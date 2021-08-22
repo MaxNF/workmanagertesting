@@ -1,7 +1,6 @@
 package com.example.work_manager_testing.fakerepository
 
 import com.example.work_manager_testing.data.CallResult
-import java.lang.UnsupportedOperationException
 import kotlin.reflect.KClass
 
 abstract class BaseFakeRepository {
@@ -14,6 +13,7 @@ abstract class BaseFakeRepository {
             }
         }
 
+    // Вместо этого можно использовать Мокито и устанавливать возвращаемый результат для конкретных методов для более точного тестирования.
     protected open fun <T> getResult(value: T): CallResult<T> {
         return when (resultToReturn) {
             CallResult.Success::class -> CallResult.Success(value)

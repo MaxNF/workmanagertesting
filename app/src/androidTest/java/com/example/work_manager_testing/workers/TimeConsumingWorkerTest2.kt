@@ -9,9 +9,8 @@ import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import org.koin.test.KoinTest
-
-internal class TimeConsumingWorkerTest2 : BaseWorkerTest(), KoinTest {
+/** Простой тест отдельно взятого воркера, но с выходными аргументами. Опять же довольно простой кейс. */
+internal class TimeConsumingWorkerTest2 : BaseWorkerTest() {
 
     private lateinit var worker: TimeConsumingWorker2
 

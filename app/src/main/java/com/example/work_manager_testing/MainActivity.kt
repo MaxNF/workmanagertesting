@@ -1,12 +1,11 @@
 package com.example.work_manager_testing
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.work.WorkInfo
-import androidx.work.WorkManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -32,8 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeWork() {
-        WorkManager.getInstance(this).getWorkInfosForUniqueWorkLiveData(MainViewModel.WORK_UNIQUE_NAME)
-            .observe(this) { workInfo ->
+       mainViewModel.getWorkInfosLiveData(this).observe(this) { workInfo ->
                 if(workInfo?.all { it.state == WorkInfo.State.SUCCEEDED } == true) {
                     Toast.makeText(this, "Work complete", Toast.LENGTH_SHORT).show()
                 }

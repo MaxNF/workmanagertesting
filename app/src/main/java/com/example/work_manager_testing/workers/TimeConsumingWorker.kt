@@ -6,9 +6,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
 import com.example.work_manager_testing.data.CallResult
-import com.example.work_manager_testing.data.RepositoryImpl
 import com.example.work_manager_testing.domain.Repository
-import kotlinx.coroutines.Dispatchers
 
 class TimeConsumingWorker(appContext: Context, params: WorkerParameters, private val repository: Repository) :
     CoroutineWorker(appContext, params) {
@@ -18,7 +16,7 @@ class TimeConsumingWorker(appContext: Context, params: WorkerParameters, private
     }
 
     override suspend fun doWork(): Result {
-        Log.d(TAG, "doWork: initiated")
+        Log.d(TAG, "doWork: initiated. Thread = ${Thread.currentThread().name}")
         return when (val result = repository.performLongRunningTaskAndGetRandomInt()) {
             is CallResult.Success -> {
                 Log.d(TAG, "doWork: succeeded ")
